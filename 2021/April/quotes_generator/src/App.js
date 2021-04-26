@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react";
 import * as React from "react";
 let randNum = Math.floor(Math.random() * 1643); //a random # between 0 and 1642
-let promise = new Promise((resolve, reject) =>
-  fetch("https://type.fit/api/quotes")
-    .then(function (response) {
-      //try to fetch the data
-      if (!response.ok) reject("Fetch failed"); //failed return the "error"
-      return response.json(); //succeeded return the data
-    })
-    .then(function (data) {
-      resolve(data[randNum]); //the data is ready!
-    })
+let promise = new Promise(
+  (resolve, reject) =>
+    fetch("https://type.fit/api/quotes")
+      .then(function (response) {
+        //try to fetch the data
+        if (!response.ok) reject("Fetch failed"); //failed return the "error"
+        return response.json(); //succeeded return the data
+      })
+      .then(function (data) {
+        resolve(data[randNum]); //the data is ready!
+      })
+      .catch((err) => console.log(err)) //catch the error
 );
 
 /*Use traditional React.Component to setState()*/
