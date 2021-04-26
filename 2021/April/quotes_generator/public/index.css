@@ -1,0 +1,45 @@
+html,
+body {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(213, 255, 238);
+  overflow: hidden;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+code {
+  font-family: "Caveat", cursive;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 31px 84px -28px rgba(0, 0, 0, 0.74);
+  width: 48.541em; /*golden ratio!*/
+  height: 30em;
+}
+
+.quotes {
+  font-family: "Caveat", sans-serif; /*from fonts.google.com/specimen/Caveat*/
+  font-size: 2em;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5em;
+}
+
+.author {
+  font-style: italic;
+  font-size: 0.8em;
+  opacity: 0.6;
+  align-self: flex-end;
+}
