@@ -152,7 +152,9 @@ ul {
   }
   //hide for desktop-view devices
 }
-
+li {
+  background-color: white;
+}
 .darkModeColor {
   color: $veryLightGrayishBlue;
   background-color: $veryDarkGrayishBlue;
