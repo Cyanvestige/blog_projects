@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import ToDoBoardComponent from "./components/toDoBoardComponent";
+import ToDoListComponent from "./components/toDoListComponent";
 import { Helmet } from "react-helmet";
 const reorder = (list, startIndex, endIndex) => {
   const [removed] = list.splice(startIndex, 1);
@@ -168,36 +168,36 @@ function App() {
                 <div ref={provided.innerRef} {...provided.droppableProps}>
                   {allActive &&
                     allFilters.map((el, index) => (
-                      <ToDoBoardComponent
+                      <ToDoListComponent
                         task={el}
                         id={el.id}
                         index={index}
                         handleDelete={handleDelete}
                         refresh={refresh}
                         darkmode={darkmode}
-                      ></ToDoBoardComponent>
+                      ></ToDoListComponent>
                     ))}
                   {doingActive &&
                     doingFilters.map((el, index) => (
-                      <ToDoBoardComponent
+                      <ToDoListComponent
                         task={el}
                         id={el.id}
                         index={index}
                         handleDelete={handleDelete}
                         refresh={refresh}
                         darkmode={darkmode}
-                      ></ToDoBoardComponent>
+                      ></ToDoListComponent>
                     ))}
                   {completeActive &&
                     completeFilters.map((el, index) => (
-                      <ToDoBoardComponent
+                      <ToDoListComponent
                         task={el}
                         id={el.id}
                         index={index}
                         handleDelete={handleDelete}
                         refresh={refresh}
                         darkmode={darkmode}
-                      ></ToDoBoardComponent>
+                      ></ToDoListComponent>
                     ))}
                   {provided.placeholder}
                 </div>
