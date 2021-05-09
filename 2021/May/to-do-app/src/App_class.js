@@ -13,7 +13,7 @@ export default class App_class extends React.Component {
   constructor(props) {
     super(props);
     let tasks = [
-      { id: "0", content: "first", isCompleted: true },
+      // { id: "0", content: "first", isCompleted: true },
       // { id: "1", content: "second", isCompleted: false },
       // { id: "2", content: "third", isCompleted: false },
     ];

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import ToDoListComponent from "./components/toDoListComponent";
+import ToDoBoardComponent from "./components/toDoBoardComponent";
 import { Helmet } from "react-helmet";
 const reorder = (list, startIndex, endIndex) => {
   const [removed] = list.splice(startIndex, 1);
   list.splice(endIndex, 0, removed);
   return list;
 };
-let currId = 0;
+let max = 0;
 function App() {
   let tasks = [
     // { id: "0", content: "first", isCompleted: true },
@@ -43,13 +43,14 @@ function App() {
   const [completeActive, switchCompleteBool] = useState(false);
   const [doingActive, switchDoingBool] = useState(false);
   const addNewTask = (e) => {
-    currId += 1;
+    max += 1;
     e.preventDefault();
     allFilters.push({
       content: inputVal,
       isCompleted: false,
-      id: `${currId}`,
+      id: `${max}`,
     });
+    console.log(allFilters[allFilters.length - 1]);
     refresh();
     setValue("");
   };
@@ -167,36 +168,36 @@ function App() {
                 <div ref={provided.innerRef} {...provided.droppableProps}>
                   {allActive &&
                     allFilters.map((el, index) => (
-                      <ToDoListComponent
+                      <ToDoBoardComponent
                         task={el}
                         id={el.id}
                         index={index}
                         handleDelete={handleDelete}
                         refresh={refresh}
                         darkmode={darkmode}
-                      ></ToDoListComponent>
+                      ></ToDoBoardComponent>
                     ))}
                   {doingActive &&
                     doingFilters.map((el, index) => (
-                      <ToDoListComponent
+                      <ToDoBoardComponent
                         task={el}
                         id={el.id}
                         index={index}
                         handleDelete={handleDelete}
                         refresh={refresh}
                         darkmode={darkmode}
-                      ></ToDoListComponent>
+                      ></ToDoBoardComponent>
                     ))}
                   {completeActive &&
                     completeFilters.map((el, index) => (
-                      <ToDoListComponent
+                      <ToDoBoardComponent
                         task={el}
                         id={el.id}
                         index={index}
                         handleDelete={handleDelete}
                         refresh={refresh}
                         darkmode={darkmode}
-                      ></ToDoListComponent>
+                      ></ToDoBoardComponent>
                     ))}
                   {provided.placeholder}
                 </div>
@@ -240,7 +241,7 @@ function App() {
           </div>
 
           <div
-            className={`filt flex flex-ai-c flex-jc-c hide-for-desktop ${
+            className={`filter flex flex-ai-c flex-jc-c hide-for-desktop ${
               darkmode && "veryDarkGrayishBlue"
             }`}
           >
