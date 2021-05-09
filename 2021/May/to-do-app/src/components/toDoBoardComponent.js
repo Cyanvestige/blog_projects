@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 
-const ToDoBoardComponent = ({
+const ToDoListComponent = ({
   task,
-  id,
   index,
   refresh,
   handleDelete,
@@ -17,7 +16,7 @@ const ToDoBoardComponent = ({
     refresh();
   };
   return (
-    <Draggable key={id} draggableId={id} index={index}>
+    <Draggable key={task.id} draggableId={task.id} index={index}>
       {(providedDrag) => (
         <li
           className={`content flex flex-ai-c ${darkmode && "darkModeColor"}`}
@@ -52,4 +51,4 @@ const ToDoBoardComponent = ({
   );
 };
 
-export default ToDoBoardComponent;
+export default ToDoListComponent;
