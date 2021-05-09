@@ -240,7 +240,7 @@ function App() {
           </div>
 
           <div
-            className={`filter flex flex-ai-c flex-jc-c hide-for-desktop ${
+            className={`filt flex flex-ai-c flex-jc-c hide-for-desktop ${
               darkmode && "veryDarkGrayishBlue"
             }`}
           >
