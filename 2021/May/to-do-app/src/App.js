@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import ToDoBoardComponent from "./components/toDoBoardComponent";
+import ToDoListComponent from "./components/toDoListComponent";
 import { Helmet } from "react-helmet";
 const reorder = (list, startIndex, endIndex) => {
   const [removed] = list.splice(startIndex, 1);
   list.splice(endIndex, 0, removed);
   return list;
 };
-let max = 0;
+let currId = 0;
 function App() {
   let tasks = [
     // { id: "0", content: "first", isCompleted: true },
@@ -43,14 +43,13 @@ function App() {
   const [completeActive, switchCompleteBool] = useState(false);
   const [doingActive, switchDoingBool] = useState(false);
   const addNewTask = (e) => {
-    max += 1;
+    currId += 1;
     e.preventDefault();
     allFilters.push({
       content: inputVal,
       isCompleted: false,
-      id: `${max}`,
+      id: `${currId}`,
     });
-    console.log(allFilters[allFilters.length - 1]);
     refresh();
     setValue("");
   };
@@ -66,7 +65,6 @@ function App() {
     switchAllBool(false);
     switchCompleteBool(true);
     switchDoingBool(false);
-    setComplete(allFilters.filter((el) => el.isCompleted === true));
     refresh();
   };
 
@@ -74,7 +72,6 @@ function App() {
     switchAllBool(false);
     switchCompleteBool(false);
     switchDoingBool(true);
-    setDoing(allFilters.filter((el) => el.isCompleted === false));
     refresh();
   };
 
@@ -158,69 +155,54 @@ function App() {
             </form>
           </div>
 
-          {allActive && (
-            <ul style={{ height: `${4 * allFilters.length}em` }}>
-              <Droppable droppableId={"0"}>
-                {(provided) => (
-                  <div ref={provided.innerRef} {...provided.droppableProps}>
-                    {allFilters.map((el, index) => (
-                      <ToDoBoardComponent
+          <ul
+            style={{
+              // height: `${4 * allFilters.length}em`,
+              backgroundColor: `${darkmode ? "#484b6a" : "#fff"}`,
+              height: "fit-content",
+            }}
+          >
+            <Droppable droppableId={"0"}>
+              {(provided) => (
+                <div ref={provided.innerRef} {...provided.droppableProps}>
+                  {allActive &&
+                    allFilters.map((el, index) => (
+                      <ToDoListComponent
                         task={el}
                         id={el.id}
                         index={index}
-                        handleDelete={(el) => handleDelete(el)}
+                        handleDelete={handleDelete}
                         refresh={refresh}
                         darkmode={darkmode}
-                      ></ToDoBoardComponent>
+                      ></ToDoListComponent>
                     ))}
-                    {provided.placeholder}
-                  </div>
-                )}
-              </Droppable>
-            </ul>
-          )}
-          {doingActive && (
-            <ul style={{ height: `${4 * doingFilters.length}em` }}>
-              <Droppable droppableId={"0"}>
-                {(provided) => (
-                  <div ref={provided.innerRef} {...provided.droppableProps}>
-                    {doingFilters.map((el, index) => (
-                      <ToDoBoardComponent
+                  {doingActive &&
+                    doingFilters.map((el, index) => (
+                      <ToDoListComponent
                         task={el}
                         id={el.id}
                         index={index}
-                        handleDelete={(el) => handleDelete(el)}
+                        handleDelete={handleDelete}
                         refresh={refresh}
                         darkmode={darkmode}
-                      ></ToDoBoardComponent>
+                      ></ToDoListComponent>
                     ))}
-                    {provided.placeholder}
-                  </div>
-                )}
-              </Droppable>
-            </ul>
-          )}
-          {completeActive && (
-            <ul style={{ height: `${4 * completeFilters.length}em` }}>
-              <Droppable droppableId={"0"}>
-                {(provided) => (
-                  <div ref={provided.innerRef} {...provided.droppableProps}>
-                    {completeFilters.map((el, index) => (
-                      <ToDoBoardComponent
+                  {completeActive &&
+                    completeFilters.map((el, index) => (
+                      <ToDoListComponent
                         task={el}
                         id={el.id}
                         index={index}
-                        handleDelete={(el) => handleDelete(el)}
+                        handleDelete={handleDelete}
                         refresh={refresh}
                         darkmode={darkmode}
-                      ></ToDoBoardComponent>
+                      ></ToDoListComponent>
                     ))}
-                    {provided.placeholder}
-                  </div>
-                )}
-              </Droppable>
-            </ul>
-          )}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </ul>
 
           <div
             className={`options flex flex-jc-sb flex-ai-c ${
@@ -258,7 +240,7 @@ function App() {
           </div>
 
           <div
-            className={`filter flex flex-ai-c flex-jc-c hide-for-desktop ${
+            className={`filt flex flex-ai-c flex-jc-c hide-for-desktop ${
               darkmode && "veryDarkGrayishBlue"
             }`}
           >
