@@ -304,7 +304,7 @@ export default class App_class extends React.Component {
             </div>
             <div
               className={`filter flex flex-ai-c flex-jc-c hide-for-desktop ${
-                this.state.darkmode && "veryDarkGrayishBlue"
+                this.state.darkmode && "darkModeColor"
               }`}
             >
               <div

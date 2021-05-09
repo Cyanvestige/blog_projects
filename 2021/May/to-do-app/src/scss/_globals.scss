@@ -95,6 +95,7 @@ ul {
   margin-left: 3.5em;
   @include breakpoint-down(medium) {
     margin-top: 1.8em;
+    margin-left: 0;
     padding: 1.25rem 1.325rem;
     border-radius: 5px;
     background-color: white;

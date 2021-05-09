@@ -10,9 +10,9 @@ const reorder = (list, startIndex, endIndex) => {
 let max = 0;
 function App() {
   let tasks = [
-    // { id: "0", content: "first", isCompleted: true },
-    // { id: "1", content: "second", isCompleted: false },
-    // { id: "2", content: "third", isCompleted: false },
+    { id: "0", content: "first", isCompleted: true },
+    { id: "1", content: "second", isCompleted: false },
+    { id: "2", content: "third", isCompleted: false },
   ];
 
   function onDragEnd(result) {
@@ -242,7 +242,7 @@ function App() {
 
           <div
             className={`filter flex flex-ai-c flex-jc-c hide-for-desktop ${
-              darkmode && "veryDarkGrayishBlue"
+              darkmode && "darkModeColor"
             }`}
           >
             <div
